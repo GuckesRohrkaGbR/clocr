@@ -1,5 +1,6 @@
 (ns clocr.interop
-  (:require [clocr.util :as utl])
+  (:require [clocr.util :as utl]
+            [clojure.java.io :as io])
   (:import (net.sourceforge.tess4j.util LoadLibs)
            (java.nio.file Paths)
            (net.sourceforge.tess4j Tesseract)
@@ -17,7 +18,7 @@
                        language]
   (let [tmp-folder (os-dependent-resources)
         data-dir (Paths/get (-> data-path
-                                (ClassLoader/getSystemResource)
+                                (io/resource)
                                 (.toURI)))]
     (add-library-to-path! tmp-folder)
     (doto (Tesseract.)
