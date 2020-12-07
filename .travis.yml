@@ -1,0 +1,7 @@
+language: clojure
+jdk:
+  - oraclejdk11
+
+os:
+  - linux
+  - windows
