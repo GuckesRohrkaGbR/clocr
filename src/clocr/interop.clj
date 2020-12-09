@@ -20,6 +20,7 @@
   (System/load (str (.getPath tmp-folder) "/libpng16.so.16"))
   (System/load (str (.getPath tmp-folder) "/libtiff.so.5"))
   (System/load (str (.getPath tmp-folder) "/libwebpmux.so.3"))
+  (System/load (str (.getPath tmp-folder) "/libopenjp2.so.7"))
   (System/load (str (.getPath tmp-folder) "/liblept.so.5"))
   (System/load (str (.getPath tmp-folder) "/libtesseract.so")))
 
