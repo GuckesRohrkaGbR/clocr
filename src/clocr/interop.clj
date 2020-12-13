@@ -2,7 +2,7 @@
   (:require [clocr.util :as utl]
             [clojure.java.io :as io])
   (:import (net.sourceforge.tess4j.util LoadLibs)
-           (java.nio.file Paths)
+           (java.nio.file Path)
            (net.sourceforge.tess4j Tesseract)
            (java.io File)))
 
@@ -24,14 +24,11 @@
   (System/load (str (.getPath tmp-folder) "/liblept.so.5"))
   (System/load (str (.getPath tmp-folder) "/libtesseract.so")))
 
-(defn setup-tesseract [data-path
+(defn setup-tesseract [^Path data-path
                        language]
-  (let [tmp-folder (os-dependent-resources)
-        data-dir (Paths/get (-> data-path
-                                (io/resource)
-                                (.toURI)))]
+  (let [tmp-folder (os-dependent-resources)]
     (add-library-to-path! tmp-folder)
     (doto (Tesseract.)
       (.setLanguage language)
       (.setOcrEngineMode 1)
-      (.setDatapath (.toString data-dir)))))
+      (.setDatapath (.toString data-path)))))
